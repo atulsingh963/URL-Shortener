@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shortly - Analytics and stats for short code {{ stats.short_code }}">
+    <title>Link Statistics — {{ stats.short_code }} | Shortly</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <a href="/" class="brand-logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+                <span>Shortly</span>
+            </a>
+        </header>
+
+        <main class="main-content">
+            <div class="card stats-card">
+                <div class="card-header border-bottom">
+                    <div class="header-top">
+                        <span class="badge badge-info">Link Statistics</span>
+                        <a href="/" class="back-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                            Back to Shortener
+                        </a>
+                    </div>
+                    <h1 class="title">Short Code: <span class="highlight">{{ stats.short_code }}</span></h1>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-icon clicks-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+                                <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value">{{ stats.click_count }}</span>
+                            <span class="stat-label">Total Clicks</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-icon date-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value small-text">{{ stats.created_at }}</span>
+                            <span class="stat-label">Created Date</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="url-details-section">
+                    <div class="url-detail-card">
+                        <span class="detail-label">Shortened URL</span>
+                        <div class="result-box mt-1">
+                            <a id="shortUrlLink" href="{{ short_url }}" target="_blank" rel="noopener noreferrer" class="short-url-text">{{ short_url }}</a>
+                            <button id="copyBtn" class="btn btn-secondary btn-copy" type="button" data-url="{{ short_url }}">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="copy-icon">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                <span id="copyBtnText">Copy</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="url-detail-card mt-3">
+                        <span class="detail-label">Original URL</span>
+                        <div class="original-url-box mt-1">
+                            <a href="{{ stats.original_url }}" target="_blank" rel="noopener noreferrer" class="original-url-text">{{ stats.original_url }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>Built with Python + Flask + SQLite</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

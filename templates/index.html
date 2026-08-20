@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shortly - Turn long URLs into short, clean, and shareable links instantly.">
+    <title>Shortly — Turn long URLs into short links</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <a href="/" class="brand-logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+                <span>Shortly</span>
+            </a>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="card shortener-card">
+                <div class="card-header">
+                    <h1 class="title">Shorten your URL</h1>
+                    <p class="subtitle">Paste a long URL and get a clean, shareable link.</p>
+                </div>
+
+                <form id="urlForm" class="url-form" novalidate>
+                    <div class="input-group">
+                        <input 
+                            type="url" 
+                            id="urlInput" 
+                            name="url" 
+                            placeholder="https://example.com/very/long/url" 
+                            required 
+                            autocomplete="off" 
+                            aria-label="URL to shorten"
+                        />
+                        <button type="submit" id="shortenBtn" class="btn btn-primary">
+                            <span class="btn-text">Shorten URL</span>
+                            <span class="spinner" id="loadingSpinner" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div id="errorMessage" class="error-message" role="alert" style="display: none;"></div>
+                </form>
+
+                <!-- Result Container -->
+                <div id="resultCard" class="result-card" style="display: none;">
+                    <div class="result-header">
+                        <span class="badge">Success</span>
+                        <h2 class="result-title">Your shortened URL</h2>
+                    </div>
+
+                    <div class="result-box">
+                        <a id="shortUrlLink" href="" target="_blank" rel="noopener noreferrer" class="short-url-text"></a>
+                        <button id="copyBtn" class="btn btn-secondary btn-copy" type="button">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="copy-icon">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            <span id="copyBtnText">Copy</span>
+                        </button>
+                    </div>
+
+                    <div class="result-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Original URL</span>
+                            <span id="originalUrlPreview" class="detail-value text-truncate"></span>
+                        </div>
+                        <div class="detail-actions">
+                            <a id="viewStatsBtn" href="" class="stats-link">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                                </svg>
+                                View Analytics &amp; Clicks
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Built with Python + Flask + SQLite</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
